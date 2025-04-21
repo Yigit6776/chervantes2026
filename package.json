@@ -1,0 +1,29 @@
+{
+  "name": "chervantes2025",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@stripe/react-stripe-js": "^3.5.1",
+    "@stripe/stripe-js": "^6.1.0",
+    "appwrite": "^17.0.1",
+    "bootstrap": "^5.3.3",
+    "firebase": "^11.4.0",
+    "iyzipay": "^2.0.64",
+    "lodash": "^4.17.21",
+    "lodash.debounce": "^4.0.8",
+    "next": "15.2.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.1"
+  }
+}
