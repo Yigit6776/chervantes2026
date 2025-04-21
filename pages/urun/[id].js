@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { db } from "../../src/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import Navbar from "@/components/Navbar";
-import { useSepet } from "../../src/context/SepetContext";
+import { useSepet } from "../../context/SepetContext";
 
 const UrunDetay = () => {
   const router = useRouter();

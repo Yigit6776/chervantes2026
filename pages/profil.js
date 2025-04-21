@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "../src/context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../src/firebaseConfig";
 import { useRouter } from "next/router";

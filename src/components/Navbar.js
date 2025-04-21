@@ -3,8 +3,8 @@ import Link from "next/link";
 import Head from "next/head";
 import { db } from "../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
-import { useSepet } from "../context/SepetContext";
-import { useAuth } from "../context/AuthContext";
+import { useSepet } from "../../context/SepetContext";
+import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
   const [kategoriler, setKategoriler] = useState([]);
