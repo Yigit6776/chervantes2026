@@ -42,8 +42,7 @@ export const SepetProvider = ({ children }) => {
     if (!uid) return;
     const ref = doc(db, 'sepetler', uid, 'urunler', urun.id);
     const mevcut = sepet.find((item) => item.id === urun.id);
-    const yeniAdet = mevcut ? mevcut.adet + 1 : 1;
-
+    const yeniAdet = mevcut ? (mevcut.adet || 1) + 1 : 1;
     await setDoc(ref, { ...urun, adet: yeniAdet });
     sepetiFirestoredanCek(uid);
   };
@@ -52,20 +51,41 @@ export const SepetProvider = ({ children }) => {
     if (!uid) return;
     const ref = doc(db, 'sepetler', uid, 'urunler', urunId);
     const mevcut = sepet.find((item) => item.id === urunId);
-
     if (!mevcut) return;
-
-    if (mevcut.adet <= 1) {
+    if ((mevcut.adet || 1) <= 1) {
       await deleteDoc(ref);
     } else {
       await updateDoc(ref, { adet: mevcut.adet - 1 });
     }
+    sepetiFirestoredanCek(uid);
+  };
 
+  const sepetiBosalt = async () => {
+    if (!uid) return;
+    const ref = collection(db, 'sepetler', uid, 'urunler');
+    const snapshot = await getDocs(ref);
+    const silmeIslemleri = snapshot.docs.map((docu) => deleteDoc(docu.ref));
+    await Promise.all(silmeIslemleri);
+    setSepet([]);
+  };
+
+  const urunuTamamenSil = async (urunId) => {
+    if (!uid) return;
+    const ref = doc(db, 'sepetler', uid, 'urunler', urunId);
+    await deleteDoc(ref);
     sepetiFirestoredanCek(uid);
   };
 
   return (
-    <SepetContext.Provider value={{ sepet, sepeteEkle, sepettenCikar }}>
+    <SepetContext.Provider
+      value={{
+        sepet,
+        sepeteEkle,
+        sepettenCikar,
+        sepetiBosalt,
+        urunuTamamenSil,
+      }}
+    >
       {children}
     </SepetContext.Provider>
   );
