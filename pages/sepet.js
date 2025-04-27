@@ -3,10 +3,10 @@
 import React from 'react';
 import { useSepet } from '../context/SepetContext';
 import Navbar from '@/components/Navbar';
-import { useRouter } from 'next/router'; // ✅ Yönlendirme için eklendi
+import { useRouter } from 'next/router';
 
 const Sepet = () => {
-  const router = useRouter(); // ✅ router tanımı
+  const router = useRouter();
   const {
     sepet,
     sepeteEkle,
@@ -66,10 +66,10 @@ const Sepet = () => {
                   style={{ gap: '10px' }}
                 >
                   <div className="d-flex align-items-center" style={{ flexGrow: 1 }}>
-                    {urun.fotograf && (
+                    {urun.fotograflar && urun.fotograflar.length > 0 && (
                       <img
-                        src={urun.fotograf}
-                        alt={urun.ad || urun.urunAdi}
+                        src={urun.fotograflar[0]} // 🔥 1. fotoğrafı gösteriyoruz
+                        alt={urun.urunAdi}
                         style={{
                           width: '40px',
                           height: '40px',
@@ -79,7 +79,7 @@ const Sepet = () => {
                         }}
                       />
                     )}
-                    <span>{urun.ad || urun.urunAdi}</span>
+                    <span>{urun.urunAdi}</span>
                   </div>
 
                   <div className="d-flex align-items-center">
@@ -97,7 +97,6 @@ const Sepet = () => {
                       +
                     </button>
 
-                    {/* 🗑 Ürünü tamamen sil */}
                     <button
                       className="btn btn-sm btn-danger ms-3"
                       onClick={() => urunSil(urun.id)}
@@ -132,7 +131,7 @@ const Sepet = () => {
 
               <button
                 className="btn btn-primary"
-                onClick={() => router.push('/odeme')} // ✅ Yönlendirme burası
+                onClick={() => router.push('/odeme')}
               >
                 Sepeti Onayla
               </button>

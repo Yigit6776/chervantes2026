@@ -34,12 +34,10 @@ export default function Home2() {
       <Navbar />
 
       <div className="container mt-5">
-      
         {loading && <p className="text-center">⏳ Yükleniyor...</p>}
         <div className="row">
           {urunler.map((urun) => {
-            // 📸 Burada fotograflar[0]'ı çekiyoruz
-            const kapakFotograf = 
+            const kapakFotograf =
               Array.isArray(urun.fotograflar) && urun.fotograflar.length > 0
                 ? urun.fotograflar[0]
                 : "/placeholder.png";
@@ -65,12 +63,19 @@ export default function Home2() {
                   <div className="card-body d-flex flex-column justify-content-between">
                     <div>
                       <h5 className="card-title">{urun.urunAdi}</h5>
+
+                      {/* Açıklamayı kısaltıyoruz */}
                       <p
                         className="card-text text-muted"
                         style={{ minHeight: "48px" }}
                       >
-                        {urun.aciklama || "Açıklama mevcut değil."}
+                        {urun.aciklama
+                          ? urun.aciklama.length > 100
+                            ? `${urun.aciklama.substring(0, 100)}...`
+                            : urun.aciklama
+                          : "Açıklama mevcut değil."}
                       </p>
+
                     </div>
                     <div className="mt-2">
                       <h6 className="text-success fw-bold">{urun.fiyat} TL</h6>
