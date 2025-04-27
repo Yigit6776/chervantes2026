@@ -86,7 +86,7 @@ const Navbar = () => {
               </li>
 
               <li className="nav-item">
-                <Link href="/about" legacyBehavior>
+                <Link href="/iletisim" legacyBehavior>
                   <a className="nav-link">Hakkımızda</a>
                 </Link>
               </li>
